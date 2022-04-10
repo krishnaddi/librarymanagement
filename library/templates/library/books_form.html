@@ -1,0 +1,23 @@
+{% extends 'library/home.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h4>Add Book</h4>
+<form action="" method="post" autocomplete="on">
+    {% csrf_token %}
+    {{form|crispy}}
+    <br>
+    <div class="row">
+    <div class="col-md-8">
+    <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>submit
+
+    </button>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'book_list' %}" class="btn btn-secondary btn-block btn-lg">
+            <i class="fas fa-stream"></i>back to list
+        </a>
+    </div>
+</div>
+</form>
+{% endblock content %}

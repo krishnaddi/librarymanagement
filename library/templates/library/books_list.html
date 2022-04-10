@@ -1,0 +1,40 @@
+{% extends 'library/home.html' %}
+
+{% block content %}
+<h4>Available Books</h4>
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <th>Name</th>
+            <th>autor</th>
+            <th>price</th>
+            <th>
+                <a href="{% url 'book_insert' %}" class="btn btn-outline-success">
+                    <i class="fas fa-plus"></i>Add New
+                </a>
+                </th>
+        </tr>
+    </thead>
+<tbody>
+    {% for book in book %}
+    <tr>
+        <td>{{book.name}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.price}}</td>
+        <td>
+            <a href="{% url 'book_update' book.id %}" class="btn text-secondary px-0">
+                <i class="far fa-edit fa-lg"></i>
+            </a>
+            <form action="{% url 'book_delete' book.id %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn">
+                    <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                </button>
+            </form>
+            
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+{% endblock content %}
